@@ -34,12 +34,13 @@
  **
  ******************************************************************************
  *****************************************************************************/
+/* $XFree86: xc/lib/Xp/XpExtVer.c,v 1.5 2002/10/16 00:37:31 dawes Exp $ */
 
 #define NEED_REPLIES
 
-#include "Printstr.h"
-#include "Xlibint.h"
-#include "extutil.h"
+#include <X11/extensions/Printstr.h>
+#include <X11/Xlibint.h>
+#include "XpExtUtil.h"
 
 
 Bool

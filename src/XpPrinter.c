@@ -34,12 +34,13 @@
  **
  ******************************************************************************
  *****************************************************************************/
+/* $XFree86: xc/lib/Xp/XpPrinter.c,v 1.9 2002/10/16 00:37:32 dawes Exp $ */
 
 #define NEED_REPLIES
 
-#include "Printstr.h"
-#include "Xlibint.h"
-#include "extutil.h"
+#include <X11/extensions/Printstr.h>
+#include <X11/Xlibint.h>
+#include "XpExtUtil.h"
 
 #define _XpPadOut(len) (((len) + 3) & ~3)
 
@@ -57,7 +58,7 @@ XpGetPrinterList (
     char        *locale;
 
     /* For decoding the variable portion of Reply */
-    CARD32	dataLenVR;
+    long	dataLenVR;
     CARD8	*dataVR;	/* aka STRING8 */
 
     XPPrinterList ptr_list;
@@ -145,7 +146,7 @@ XpGetPrinterList (
 	    /*
 	     * Pull printer length and then name.
 	     */
-	    _XRead32 (dpy, (char *) &dataLenVR, (long) sizeof(dataLenVR) );
+	    _XRead32 (dpy, &dataLenVR, (long) sizeof(CARD32) );
 
 	    if (dataLenVR) {
 		dataVR = (CARD8 *) Xmalloc( (unsigned) dataLenVR + 1 );
@@ -167,7 +168,7 @@ XpGetPrinterList (
 	    /*
 	     * Pull localized description length and then description.
 	     */
-	    _XRead32 (dpy, (char *) &dataLenVR, (long) sizeof(dataLenVR) );
+	    _XRead32 (dpy, &dataLenVR, (long) sizeof(CARD32) );
 
 	    if (dataLenVR) {
 		dataVR = (CARD8 *) Xmalloc( (unsigned) dataLenVR + 1 );

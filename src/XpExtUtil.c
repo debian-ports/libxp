@@ -34,13 +34,14 @@
  **
  ******************************************************************************
  *****************************************************************************/
+/* $XFree86: xc/lib/Xp/XpExtUtil.c,v 1.7 2002/10/16 00:37:31 dawes Exp $ */
 
 #define NEED_EVENTS
 #define NEED_REPLIES
 #include <stdio.h>
-#include "Printstr.h"
-#include "Xlibint.h"
-#include "extutil.h"
+#include <X11/extensions/Printstr.h>
+#include <X11/Xlibint.h>
+#include "XpExtUtil.h"
 #include <X11/Xos.h>
 
 #define ENQUEUE_EVENT   True
@@ -49,7 +50,6 @@
 static XExtensionInfo     xp_info_data;
 static XExtensionInfo     *xp_info = &xp_info_data;
 static /* const */ char   *xp_extension_name = XP_PRINTNAME;
-static /* const */ XEvent emptyevent;
 
 static int    XpClose();
 static char   *XpError();
@@ -73,9 +73,15 @@ static /* const */ XExtensionHooks xpprint_extension_hooks = {
     XpError,			/* error_string */
 };
 
+typedef struct {
+    int     present;
+    short   major_version;
+    short   minor_version;
+} XPrintLocalExtensionVersion;
+
 typedef struct _xpPrintData {
     XEvent              data;
-    XExtensionVersion   *vers;
+    XPrintLocalExtensionVersion   *vers;
 } xpPrintData;
 
 static char *XpErrorList[ /* XP_ERRORS */ ] = {
@@ -95,7 +101,7 @@ static XEXT_GENERATE_ERROR_STRING (XpError, xp_extension_name,
  * XP Print extension versions.
  */
 
-static XExtensionVersion xpprintversions[] = {{XP_ABSENT,0,0},
+static XPrintLocalExtensionVersion xpprintversions[] = {{XP_ABSENT,0,0},
 	{XP_PRESENT, XP_PROTO_MAJOR, XP_PROTO_MINOR}};
 
 
@@ -139,7 +145,7 @@ int XpCheckExtInit(dpy, version_index)
 	}
 
 	((xpPrintData *) info->data)->vers =
-	    (XExtensionVersion *) Xmalloc(sizeof(XExtensionVersion));
+	    (XPrintLocalExtensionVersion *) Xmalloc(sizeof(XPrintLocalExtensionVersion));
 	if (!(((xpPrintData *) info->data)->vers)) {
 	    _XUnlockMutex(_Xglobal_lock);
 	    return (-1);
@@ -277,7 +283,6 @@ XpEventToWire(dpy, re, event, count)
     register int *count;
 {
     XExtDisplayInfo *info = (XExtDisplayInfo *) xp_find_display (dpy);
-    int i;
 
     switch ((re->type & 0x7f) - info->codes->first_event)
         {
@@ -287,6 +292,7 @@ XpEventToWire(dpy, re, event, count)
             register XDeviceKeyEvent *ev = (XDeviceKeyEvent*) re;
             register deviceKeyButtonPointer *kev;
             register deviceValuator *vev;
+	    int i;
 
             *count = 2;
             kev = (deviceKeyButtonPointer *) Xmalloc (*count * sizeof (xEvent));
@@ -330,7 +336,6 @@ XpEventToWire(dpy, re, event, count)
 #endif /* PRINT_SomeEventExample2 */
 
         default:
-            return(_XUnknownNativeEvent(dpy, re, event));
+            return(_XUnknownNativeEvent(dpy, re, *event));
         }
 }
-

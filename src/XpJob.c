@@ -34,11 +34,16 @@
  **
  ******************************************************************************
  *****************************************************************************/
+/* $XFree86: xc/lib/Xp/XpJob.c,v 1.6 2002/10/16 00:37:32 dawes Exp $ */
 
-#include "Printstr.h"
-#include "Xlibint.h"
-#include "X11/Xos.h"
-#include "extutil.h"
+#if defined(sun) && defined(i386) && defined(SVR4) && !defined(__EXTENSIONS__)
+#define __EXTENSIONS__
+#endif
+
+#include <X11/extensions/Printstr.h>
+#include <X11/Xlibint.h>
+#include <X11/Xos.h>
+#include "XpExtUtil.h"
 #include <limits.h>
 #ifndef WIN32
 #define X_INCLUDE_PWD_H
@@ -96,7 +101,9 @@ XpStartJob (
 	char            *joa;		/* job owner attribute */
  	char *PwName;
 #ifndef WIN32
+#ifdef X_NEEDS_PWPARAMS
 	_Xgetpwparams pwparams;
+#endif
 	struct passwd *pw;
 	pw = _XGetpwuid(getuid(),pwparams);
 
