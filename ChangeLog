@@ -1,0 +1,9 @@
+2005-05-17    <ssp@aware-of-vacuity.boston.redhat.com>
+
+	* configure.ac: Remove rest of half-removed if statement
+
+	* ChangeLog: remove irrelevant entries
+
+2005-04-16  Josh Triplett  <josh@freedesktop.org>
+
+	* Makefile.am: Tell automake about the manpage.
