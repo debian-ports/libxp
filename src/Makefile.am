@@ -20,7 +20,9 @@ libXp_la_SOURCES =			\
 					\
 	XpExtUtil.h
 
-libXp_la_LIBADD = @X_LIBS@
+libXp_la_LIBADD = $(XPRINT_LIBS)
+
+libXp_la_CFLAGS = $(XPRINT_CFLAGS)
 
 INCLUDES = -I$(top_srcdir)/include/X11/extensions
 

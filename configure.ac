@@ -36,10 +36,10 @@ AC_PROG_CC
 AC_PROG_LIBTOOL
 
 # Check for X and print proto
-PKG_CHECK_MODULES(XPRINT, x11 printproto)
+PKG_CHECK_MODULES(XPRINT, x11 xext printproto)
 
-AC_SUBST(XP_CFLAGS)
-AC_SUBST(XP_LIBS)
+AC_SUBST(XPRINT_CFLAGS)
+AC_SUBST(XPRINT_LIBS)
 
 AC_OUTPUT([Makefile
 	   src/Makefile
