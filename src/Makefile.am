@@ -35,5 +35,5 @@ XP_CURRENT=2
 # bump for non-ABI changes, reset to zero when CURRENT changes
 XP_REVISION=0
 # bump when the ABI changes in backward-compatible fashion
-XF_AGE=2
+XP_AGE=2
 libXp_la_LDFLAGS = -version-info ${XP_CURRENT}:${XP_REVISION}:${XP_AGE} -no-undefined
