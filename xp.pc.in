@@ -6,5 +6,5 @@ includedir=@includedir@
 Name: Xp
 Description: X Print Library
 Version: @PACKAGE_VERSION@
-Cflags: -I${includedir} @X_CFLAGS@
-Libs: -L${libdir} -lXp @X_LIBS@
+Cflags: -I${includedir} @XPRINT_CFLAGS@
+Libs: -L${libdir} -lXp @XPRINT_LIBS@
