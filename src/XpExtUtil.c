@@ -140,7 +140,7 @@ int XpCheckExtInitUnlocked(dpy, version_index)
 	 * Hang a Xp private data struct.   Use it for version
 	 * information.
 	 */
-	info->data = (caddr_t) Xmalloc (sizeof (xpPrintData));
+	info->data = (XPointer) Xmalloc (sizeof (xpPrintData));
 	if (!info->data) {
 	    return (-1);
 	}
