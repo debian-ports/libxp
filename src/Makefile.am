@@ -27,13 +27,9 @@ AM_CFLAGS = $(XPRINT_CFLAGS)
 INCLUDES = -I$(top_srcdir)/include/X11/extensions
 
 #
-# Library version info.  Check the libtool docs for
-# instructions on when and how to change this value
+# Library version number. This must match old versions on
+# every platform, so until we change the ABI in an incompatible fashion,
+# we have to use -version-number
 #
-# bump when the ABI changes
-XP_CURRENT=2
-# bump for non-ABI changes, reset to zero when CURRENT changes
-XP_REVISION=0
-# bump when the ABI changes in backward-compatible fashion
-XP_AGE=2
-libXp_la_LDFLAGS = -version-info ${XP_CURRENT}:${XP_REVISION}:${XP_AGE} -no-undefined
+XP_VERSION=-version-number 6:2:0
+libXp_la_LDFLAGS = $(XP_VERSION) -no-undefined
