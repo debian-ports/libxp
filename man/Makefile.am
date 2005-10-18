@@ -68,7 +68,7 @@ EXTRA_DIST = $(libman_SOURCES)
 
 CLEANFILES = $(libman_DATA)
 
-libman_DATA = $(libman_SOURCES:man=$(LIB_MAN_SUFFIX))
+libman_DATA = $(libman_SOURCES:man=@LIB_MAN_SUFFIX@)
 
 SED = sed
 
