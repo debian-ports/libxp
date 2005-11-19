@@ -6,5 +6,7 @@ includedir=@includedir@
 Name: Xp
 Description: X Print Library
 Version: @PACKAGE_VERSION@
-Cflags: -I${includedir} @XPRINT_CFLAGS@
-Libs: -L${libdir} -lXp @XPRINT_LIBS@
+Requires: printproto
+Requires.private: x11 xext xau
+Cflags: -I${includedir}
+Libs: -L${libdir} -lXp

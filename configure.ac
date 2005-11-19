@@ -36,7 +36,7 @@ AC_PROG_CC
 AC_PROG_LIBTOOL
 
 # Check for X and print proto
-PKG_CHECK_MODULES(XPRINT, x11 xext xau printproto)
+PKG_CHECK_MODULES(XPRINT, x11 xext xextproto xau printproto)
 
 AC_SUBST(XPRINT_CFLAGS)
 AC_SUBST(XPRINT_LIBS)
