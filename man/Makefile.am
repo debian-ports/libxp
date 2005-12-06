@@ -27,7 +27,7 @@
 
 libmandir = $(LIB_MAN_DIR)
 
-libman_SOURCES = \
+libman_PRE = \
 	libXp.man				\
 	XpCancelDoc.man				\
 	XpCancelJob.man				\
@@ -64,11 +64,11 @@ libman_SOURCES = \
 	XpStartPage.man
 
 
-EXTRA_DIST = $(libman_SOURCES)
+EXTRA_DIST = $(libman_PRE)
 
 CLEANFILES = $(libman_DATA)
 
-libman_DATA = $(libman_SOURCES:man=@LIB_MAN_SUFFIX@)
+libman_DATA = $(libman_PRE:man=@LIB_MAN_SUFFIX@)
 
 SED = sed
 
