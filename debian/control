@@ -1,0 +1,65 @@
+Source: libxp
+Section: x11
+Priority: optional
+Maintainer: Drew Parsons <dparsons@debian.org>
+Maintainer: Debian X Strike Force <debian-x@lists.debian.org>
+Uploaders: Drew Parsons <dparsons@debian.org>
+Build-Depends: debhelper (>= 5), quilt, pkg-config, libx11-dev (>= 1:0.99.2-1), x11proto-print-dev, x11proto-xext-dev, libxext-dev, libxau-dev
+Standards-Version: 3.7.2
+
+Package: libxp6
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: X Printing Extension (Xprint) client library
+ libXp provides public APIs to allow client applications to render to
+ non-display devices, making use of the X Print Service.
+ .
+ More information about X.Org can be found at:
+ <URL:http://xorg.freedesktop.org>
+ <URL:http://lists.freedesktop.org/mailman/listinfo/xorg>
+ .
+ This module can be found as the module 'lib/Xp' at
+ :pserver:anoncvs@cvs.freedesktop.org:/cvs/xorg
+
+Package: libxp6-dbg
+Section: libdevel
+Priority: extra
+Architecture: any
+Depends: libxp6 (= ${Source-Version}), ${shlibs:Depends}
+Description: X Printing Extension (Xprint) client library (unstripped)
+ libXp provides public APIs to allow client applications to render to
+ non-display devices, making use of the X Print Service.
+ .
+ This package provides an unstripped shared object with debugging symbols,
+ useful to provide a backtrace with symbol names in a debugger; this
+ facilitates interpretation of core dumps, and aids in finding logic errors in
+ programs using this library (or the library itself).  The library is
+ installed in /usr/lib/debug and can be used by placing that directory in the
+ LD_LIBRARY_PATH environment variable when the code to be debugged is
+ executed.  Non-programmers will likely have little use for this package.
+ .
+ More information about X.Org can be found at:
+ <URL:http://xorg.freedesktop.org>
+ <URL:http://lists.freedesktop.org/mailman/listinfo/xorg>
+ .
+ This module can be found as the module 'lib/Xp' at
+ :pserver:anoncvs@cvs.freedesktop.org:/cvs/xorg
+
+Package: libxp-dev
+Section: libdevel
+Architecture: any
+Depends: libxp6 (= ${Source-Version}), libx11-dev (>= 2:1.0.0), x11proto-print-dev
+Pre-Depends: x11-common (>= 1:7.0.0)
+Description: X Printing Extension (Xprint) client library (development files)
+ libXp provides public APIs to allow client applications to render to
+ non-display devices, making use of the X Print Service.
+ .
+ This package provides a static library and C header files.
+ .
+ More information about X.Org can be found at:
+ <URL:http://xorg.freedesktop.org>
+ <URL:http://lists.freedesktop.org/mailman/listinfo/xorg>
+ .
+ This module can be found as the module 'lib/Xp' at
+ :pserver:anoncvs@cvs.freedesktop.org:/cvs/xorg

@@ -1,0 +1,13 @@
+libxp (1:1.0.0.xsf1-1) unstable; urgency=low
+
+  * Package source management transferred to XSF.  Upstream version
+    number manipulated to allow for move from dbs to quilt.
+  * Standards version 3.7.2.
+
+ -- Drew Parsons <dparsons@debian.org>  Sat, 29 Jul 2006 23:13:51 +1000
+
+libxp (1:1.0.0-1) unstable; urgency=low
+
+  * Initial modular release for X11R7. Closes: #362554.
+
+ -- Drew Parsons <dparsons@debian.org>  Sun, 16 Apr 2006 16:51:31 +1000
