@@ -1,7 +1,6 @@
 Source: libxp
 Section: x11
 Priority: optional
-Maintainer: Drew Parsons <dparsons@debian.org>
 Maintainer: Debian X Strike Force <debian-x@lists.debian.org>
 Uploaders: Drew Parsons <dparsons@debian.org>
 Build-Depends: debhelper (>= 5), quilt, pkg-config, libx11-dev (>= 1:0.99.2-1), x11proto-print-dev, x11proto-xext-dev, libxext-dev, libxau-dev
