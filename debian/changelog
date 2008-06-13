@@ -1,3 +1,14 @@
+libxp (1:1.0.0.xsf1-2) UNRELEASED; urgency=low
+
+  * Bump Standards-Version to 3.7.3 (no changes).
+  * Add Vcs-Browser and Vcs-Git fields to debian/control.
+  * Add a link to www.X.org in the long description.
+  * Update reference to the upstream module in the long description.
+  * Update upstream URL in debian/copyright.
+  * Use ${binary:Version} instead of the deprecated ${Source-Version}.
+
+ -- Brice Goglin <bgoglin@debian.org>  Fri, 13 Jun 2008 11:43:00 +0200
+
 libxp (1:1.0.0.xsf1-1) unstable; urgency=low
 
   * Package source management transferred to XSF.  Upstream version
