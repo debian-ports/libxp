@@ -11,6 +11,7 @@ libxp (1:1.0.0.xsf1-2) UNRELEASED; urgency=low
 
   [ Julien Cristau ]
   * libxp-dev needs to depend on libxext-dev and libxau-dev (closes: #487054).
+  * autoreconf with current autotools to get updated config.{guess,sub}.
 
  -- Brice Goglin <bgoglin@debian.org>  Fri, 13 Jun 2008 11:55:59 +0200
 
