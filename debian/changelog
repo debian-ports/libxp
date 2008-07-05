@@ -1,4 +1,4 @@
-libxp (1:1.0.0.xsf1-2) UNRELEASED; urgency=low
+libxp (1:1.0.0.xsf1-2) unstable; urgency=low
 
   [ Brice Goglin ]
   * Bump Standards-Version to 3.7.3 (no changes).
@@ -13,7 +13,7 @@ libxp (1:1.0.0.xsf1-2) UNRELEASED; urgency=low
   * libxp-dev needs to depend on libxext-dev and libxau-dev (closes: #487054).
   * autoreconf with current autotools to get updated config.{guess,sub}.
 
- -- Brice Goglin <bgoglin@debian.org>  Fri, 13 Jun 2008 11:55:59 +0200
+ -- Julien Cristau <jcristau@debian.org>  Sat, 05 Jul 2008 19:17:56 +0200
 
 libxp (1:1.0.0.xsf1-1) unstable; urgency=low
 
