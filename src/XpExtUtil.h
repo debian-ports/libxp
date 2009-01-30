@@ -31,11 +31,24 @@
 #include <X11/Xfuncproto.h>
 #include <X11/extensions/extutil.h>
 
+_XFUNCPROTOBEGIN
+
 extern XEXT_FIND_DISPLAY_PROTO(xp_find_display);
 
 extern int XpCheckExtInit(
     Display * /* dpy */,
     int       /* version_index */
 );
+
+extern int XpCheckExtInitUnlocked(
+    Display *	/* dpy */,
+    int		/* version_index */
+);
+
+extern char *_xpstrdup(
+    char *	/* str */
+);
+
+_XFUNCPROTOEND
 
 #endif /* _XPEXTUTIL_H */

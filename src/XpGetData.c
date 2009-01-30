@@ -66,12 +66,8 @@ typedef struct {
  * XpGetDocumentData().
  */
 static Bool
-_XpGetDocDataHandler(dpy, rep, buf, len, adata)
-    register Display *dpy;
-    register xReply *rep;
-    char *buf;
-    int len;
-    XPointer adata;
+_XpGetDocDataHandler(Display *dpy, xReply *rep,
+		     char *buf, int len, XPointer adata)
 {
     register _XpState            *state;
     xPrintGetDocumentDataReply   replbuf;

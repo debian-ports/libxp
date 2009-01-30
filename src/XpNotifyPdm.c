@@ -54,6 +54,8 @@
 #include <stdlib.h>
 #include <X11/Xos.h>
 
+#include "XpExtUtil.h"
+
 /*
  * Alternate selection environment variables.
  */

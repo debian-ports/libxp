@@ -54,8 +54,6 @@ char         *_xp_hinter_desc = NULL;
 int           _xp_hinter_init = 1;	/* need to init */
 
 
-extern char *_xpstrdup();
-
 
 /******************************************************************************
  *
@@ -63,7 +61,7 @@ extern char *_xpstrdup();
  *
  * Make changes here only.
  */
-static char *_XpLocaleHinter()
+static char *_XpLocaleHinter(void)
 {
 #ifdef hpux
     char lbuf[ LC_BUFSIZ ];
@@ -180,7 +178,7 @@ XpGetLocaleHinter (
  *
  * If neither a hint or description exists, a NULL is returned.
  */
-char *XpGetLocaleNetString()
+char *XpGetLocaleNetString(void)
 {
     XPHinterProc  locale_hinter;
 
