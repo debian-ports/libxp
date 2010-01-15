@@ -1,4 +1,3 @@
-/* $XFree86: xc/lib/Xp/XpExtUtil.h,v 1.3 2002/10/16 00:37:31 dawes Exp $ */
 /*
  * Copyright (C) 2000 The XFree86 Project, Inc.  All Rights Reserved.
  *
