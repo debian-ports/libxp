@@ -40,13 +40,10 @@ XORG_MACROS_VERSION(1.8)
 XORG_DEFAULT_OPTIONS
 
 # Check for progs
-AC_PROG_CC
 AC_PROG_LIBTOOL
 
 # Check for X and print proto
 PKG_CHECK_MODULES(XPRINT, x11 xext xextproto xau printproto)
-AC_SUBST(XPRINT_CFLAGS)
-AC_SUBST(XPRINT_LIBS)
 
 AC_CONFIG_FILES([Makefile
 		 src/Makefile
