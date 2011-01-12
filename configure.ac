@@ -23,7 +23,13 @@ dnl Process this file with autoconf to create configure.
 
 AC_PREREQ([2.60])
 
-AC_INIT(libXp, 1.0.0, [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg], libXp)
+# Initialize Autoconf
+AC_INIT([libXp],[1.0.0],
+        [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg],[libXp])
+AC_CONFIG_SRCDIR([Makefile.am])
+AC_CONFIG_HEADERS([config.h])
+
+# Initialize Automake
 AM_INIT_AUTOMAKE([dist-bzip2])
 AM_MAINTAINER_MODE
 
@@ -32,8 +38,6 @@ m4_ifndef([XORG_MACROS_VERSION],
 	  [m4_fatal([must install xorg-macros 1.8 or later before running autoconf/autogen])])
 XORG_MACROS_VERSION(1.8)
 XORG_DEFAULT_OPTIONS
-
-AM_CONFIG_HEADER(config.h)
 
 # Check for progs
 AC_PROG_CC
@@ -44,8 +48,9 @@ PKG_CHECK_MODULES(XPRINT, x11 xext xextproto xau printproto)
 AC_SUBST(XPRINT_CFLAGS)
 AC_SUBST(XPRINT_LIBS)
 
-AC_OUTPUT([Makefile
-	   src/Makefile
-	   man/Makefile
-           xp.pc])
+AC_CONFIG_FILES([Makefile
+		 src/Makefile
+		 man/Makefile
+		 xp.pc])
+AC_OUTPUT
 
