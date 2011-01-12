@@ -66,16 +66,9 @@ CLEANFILES = $(libman_DATA)
 
 libman_DATA = $(libman_PRE:man=@LIB_MAN_SUFFIX@)
 
-SED = sed
-
-# Strings to replace in man pages
-XORGRELSTRING = @PACKAGE_STRING@
-  XORGMANNAME = X Version 11
-
-MAN_SUBSTS = -e 's/__xorgversion__/"$(XORGRELSTRING)" "$(XORGMANNAME)"/'
-
 SUFFIXES = .$(LIB_MAN_SUFFIX) .man
 
+# String replacements in MAN_SUBSTS now come from xorg-macros.m4 via configure
 .man.$(LIB_MAN_SUFFIX):
-	sed $(MAN_SUBSTS) < $< > $@
+	$(AM_V_GEN)$(SED) $(MAN_SUBSTS) < $< > $@
 
