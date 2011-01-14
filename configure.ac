@@ -24,7 +24,7 @@ dnl Process this file with autoconf to create configure.
 AC_PREREQ([2.60])
 
 # Initialize Autoconf
-AC_INIT([libXp],[1.0.0],
+AC_INIT([libXp],[1.0.1],
         [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg],[libXp])
 AC_CONFIG_SRCDIR([Makefile.am])
 AC_CONFIG_HEADERS([config.h])
