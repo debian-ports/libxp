@@ -1,4 +1,4 @@
-libxp (1:1.0.1-1) UNRELEASED; urgency=low
+libxp (1:1.0.1-1) unstable; urgency=low
 
   * New upstream release.
   * Update debian/copyright from upstream COPYING.
@@ -17,7 +17,7 @@ libxp (1:1.0.1-1) UNRELEASED; urgency=low
     - Add a placeholder series file.
   * Bump Standards-Version to 3.9.1 (no changes needed).
 
- -- Cyril Brulebois <kibi@debian.org>  Tue, 08 Mar 2011 00:11:40 +0100
+ -- Cyril Brulebois <kibi@debian.org>  Tue, 08 Mar 2011 00:39:37 +0100
 
 libxp (1:1.0.0.xsf1-2) unstable; urgency=low
 
