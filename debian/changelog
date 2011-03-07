@@ -15,6 +15,7 @@ libxp (1:1.0.1-1) UNRELEASED; urgency=low
     - Add ${misc:Depends} to all Depends.
     - Remove Debian revision from the libx11-dev build-dep.
     - Add a placeholder series file.
+  * Bump Standards-Version to 3.9.1 (no changes needed).
 
  -- Cyril Brulebois <kibi@debian.org>  Tue, 08 Mar 2011 00:11:40 +0100
 
