@@ -37,12 +37,12 @@ build: patch build-stamp
 build-stamp:
 	dh_testdir
 
-	test -d obj-$(DEB_BUILD_GNU_TYPE) || mkdir obj-$(DEB_BUILD_GNU_TYPE)
-	cd obj-$(DEB_BUILD_GNU_TYPE) && \
+	mkdir -p build
+	cd build && \
 	../configure --prefix=/usr --mandir=\$${prefix}/share/man \
 	             --infodir=\$${prefix}/share/info $(confflags) \
-	             CFLAGS="$(CFLAGS)" 
-	cd obj-$(DEB_BUILD_GNU_TYPE) && $(MAKE)
+	             CFLAGS="$(CFLAGS)"
+	$(MAKE) -C build
 
 	touch build-stamp
 
@@ -55,7 +55,7 @@ clean: xsfclean
 	rm -f */config.cache */config.log */config.status
 	rm -f conftest* */conftest*
 	rm -rf autom4te.cache */autom4te.cache
-	rm -rf obj-*
+	rm -rf build
 
 	dh_clean
 
@@ -65,7 +65,7 @@ install: build
 	dh_clean -k
 	dh_installdirs
 
-	cd obj-$(DEB_BUILD_GNU_TYPE) && $(MAKE) DESTDIR=$(CURDIR)/debian/tmp install
+	$(MAKE) -C build DESTDIR=$(CURDIR)/debian/tmp install
 
 # Build architecture-dependent files here.
 binary-arch: build install
