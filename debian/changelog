@@ -5,6 +5,7 @@ libxp (1:1.0.1-1) UNRELEASED; urgency=low
   * Wrap Build-Depends.
   * Add xutils-dev build-dep for xorg-macros (although we don't run
     autoreconf — yet?).
+  * Wrap Depends.
 
  -- Cyril Brulebois <kibi@debian.org>  Tue, 08 Mar 2011 00:11:40 +0100
 

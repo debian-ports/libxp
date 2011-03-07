@@ -20,7 +20,8 @@ Vcs-Browser: http://git.debian.org/?p=pkg-xorg/lib/libxp.git
 Package: libxp6
 Section: libs
 Architecture: any
-Depends: ${shlibs:Depends}
+Depends:
+ ${shlibs:Depends},
 Description: X Printing Extension (Xprint) client library
  libXp provides public APIs to allow client applications to render to
  non-display devices, making use of the X Print Service.
@@ -35,7 +36,9 @@ Package: libxp6-dbg
 Section: libdevel
 Priority: extra
 Architecture: any
-Depends: libxp6 (= ${binary:Version}), ${shlibs:Depends}
+Depends:
+ libxp6 (= ${binary:Version}),
+ ${shlibs:Depends},
 Description: X Printing Extension (Xprint) client library (unstripped)
  libXp provides public APIs to allow client applications to render to
  non-display devices, making use of the X Print Service.
@@ -57,8 +60,14 @@ Description: X Printing Extension (Xprint) client library (unstripped)
 Package: libxp-dev
 Section: libdevel
 Architecture: any
-Depends: libxp6 (= ${binary:Version}), libx11-dev (>= 2:1.0.0), x11proto-print-dev, libxext-dev, libxau-dev
-Pre-Depends: x11-common (>= 1:7.0.0)
+Depends:
+ libxp6 (= ${binary:Version}),
+ libx11-dev (>= 2:1.0.0),
+ x11proto-print-dev,
+ libxext-dev,
+ libxau-dev,
+Pre-Depends:
+ x11-common (>= 1:7.0.0),
 Description: X Printing Extension (Xprint) client library (development files)
  libXp provides public APIs to allow client applications to render to
  non-display devices, making use of the X Print Service.
