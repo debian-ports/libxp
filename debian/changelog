@@ -11,6 +11,8 @@ libxp (1:1.0.1-1) UNRELEASED; urgency=low
     additional safety.
   * Build in build/ instead of obj-$(DEB_BUILD_GNU_TYPE)/.
   * Add myself to Uploaders.
+  * Fix a bunch of lintian warnings:
+    - Add ${misc:Depends} to all Depends.
 
  -- Cyril Brulebois <kibi@debian.org>  Tue, 08 Mar 2011 00:11:40 +0100
 

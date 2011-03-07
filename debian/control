@@ -22,6 +22,7 @@ Section: libs
 Architecture: any
 Depends:
  ${shlibs:Depends},
+ ${misc:Depends},
 Description: X Printing Extension (Xprint) client library
  libXp provides public APIs to allow client applications to render to
  non-display devices, making use of the X Print Service.
@@ -39,6 +40,7 @@ Architecture: any
 Depends:
  libxp6 (= ${binary:Version}),
  ${shlibs:Depends},
+ ${misc:Depends},
 Description: X Printing Extension (Xprint) client library (unstripped)
  libXp provides public APIs to allow client applications to render to
  non-display devices, making use of the X Print Service.
@@ -61,6 +63,7 @@ Package: libxp-dev
 Section: libdevel
 Architecture: any
 Depends:
+ ${misc:Depends},
  libxp6 (= ${binary:Version}),
  libx11-dev (>= 2:1.0.0),
  x11proto-print-dev,
