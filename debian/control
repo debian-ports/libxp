@@ -12,6 +12,7 @@ Build-Depends:
  x11proto-xext-dev,
  libxext-dev,
  libxau-dev,
+ xutils-dev (>= 1:7.5+4),
 Standards-Version: 3.7.3
 Vcs-Git: git://git.debian.org/git/pkg-xorg/lib/libxp
 Vcs-Browser: http://git.debian.org/?p=pkg-xorg/lib/libxp.git

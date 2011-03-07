@@ -3,6 +3,8 @@ libxp (1:1.0.1-1) UNRELEASED; urgency=low
   * New upstream release.
   * Update debian/copyright from upstream COPYING.
   * Wrap Build-Depends.
+  * Add xutils-dev build-dep for xorg-macros (although we don't run
+    autoreconf — yet?).
 
  -- Cyril Brulebois <kibi@debian.org>  Tue, 08 Mar 2011 00:11:40 +0100
 
