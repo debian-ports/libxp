@@ -1,10 +1,9 @@
-/* $Xorg: XpPrinter.c,v 1.4 2000/08/17 19:46:07 cpqbld Exp $ */
 /******************************************************************************
  ******************************************************************************
  **
  ** (c) Copyright 1996 Hewlett-Packard Company
  ** (c) Copyright 1996 International Business Machines Corp.
- ** (c) Copyright 1996 Sun Microsystems, Inc.
+ ** (c) Copyright 1996, Oracle and/or its affiliates. All rights reserved.
  ** (c) Copyright 1996 Novell, Inc.
  ** (c) Copyright 1996 Digital Equipment Corp.
  ** (c) Copyright 1996 Fujitsu Limited
@@ -34,7 +33,6 @@
  **
  ******************************************************************************
  *****************************************************************************/
-/* $XFree86: xc/lib/Xp/XpPrinter.c,v 1.8 2001/04/01 14:00:02 tsi Exp $ */
 
 #define NEED_REPLIES
 
@@ -92,7 +90,7 @@ XpGetPrinterList (
      */
     if ( printer_name == (char *) NULL )
 	req->printerNameLen = 0;
-    else if ( *printer_name == (char) NULL )
+    else if ( *printer_name == '\0' )
 	req->printerNameLen = 0;
     else {
 	printer_name_len    = strlen( printer_name );
@@ -102,7 +100,7 @@ XpGetPrinterList (
 
     if ( locale == (char *) NULL )
 	req->localeLen = 0;
-    else if ( *locale == (char) NULL )
+    else if ( *locale == '\0' )
 	req->localeLen = 0;
     else {
 	locale_len     = strlen( locale );

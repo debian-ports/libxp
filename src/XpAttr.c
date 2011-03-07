@@ -1,10 +1,9 @@
-/* $Xorg: XpAttr.c,v 1.4 2000/08/17 19:46:05 cpqbld Exp $ */
 /******************************************************************************
  ******************************************************************************
  **
  ** (c) Copyright 1996 Hewlett-Packard Company
  ** (c) Copyright 1996 International Business Machines Corp.
- ** (c) Copyright 1996 Sun Microsystems, Inc.
+ ** (c) Copyright 1996, Oracle and/or its affiliates. All rights reserved.
  ** (c) Copyright 1996 Novell, Inc.
  ** (c) Copyright 1996 Digital Equipment Corp.
  ** (c) Copyright 1996 Fujitsu Limited
@@ -34,7 +33,6 @@
  **
  ******************************************************************************
  *****************************************************************************/
-/* $XFree86: xc/lib/Xp/XpAttr.c,v 1.6 2001/01/17 19:43:01 dawes Exp $ */
 
 #define NEED_REPLIES
 

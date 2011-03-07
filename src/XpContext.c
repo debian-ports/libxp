@@ -1,10 +1,9 @@
-/* $Xorg: XpContext.c,v 1.4 2000/08/17 19:46:05 cpqbld Exp $ */
 /******************************************************************************
  ******************************************************************************
  **
  ** (c) Copyright 1996 Hewlett-Packard Company
  ** (c) Copyright 1996 International Business Machines Corp.
- ** (c) Copyright 1996 Sun Microsystems, Inc.
+ ** (c) Copyright 1996, Oracle and/or its affiliates. All rights reserved.
  ** (c) Copyright 1996 Novell, Inc.
  ** (c) Copyright 1996 Digital Equipment Corp.
  ** (c) Copyright 1996 Fujitsu Limited
@@ -34,7 +33,6 @@
  **
  ******************************************************************************
  *****************************************************************************/
-/* $XFree86: xc/lib/Xp/XpContext.c,v 1.6 2001/10/28 03:32:39 tsi Exp $ */
 
 #define NEED_REPLIES
 
@@ -79,7 +77,7 @@ XpCreateContext (
 
     if ( locale == (char *) NULL )
         req->localeLen = 0;
-    else if ( *locale == (char) NULL )
+    else if ( *locale == '\0' )
         req->localeLen = 0;
     else {
         locale_len     = strlen( locale );

@@ -1,10 +1,9 @@
-/* $Xorg: XpGetData.c,v 1.4 2000/08/17 19:46:07 cpqbld Exp $ */
 /******************************************************************************
  ******************************************************************************
  **
  ** (c) Copyright 1996 Hewlett-Packard Company
  ** (c) Copyright 1996 International Business Machines Corp.
- ** (c) Copyright 1996 Sun Microsystems, Inc.
+ ** (c) Copyright 1996, Oracle and/or its affiliates. All rights reserved.
  ** (c) Copyright 1996 Novell, Inc.
  ** (c) Copyright 1996 Digital Equipment Corp.
  ** (c) Copyright 1996 Fujitsu Limited
@@ -34,7 +33,6 @@
  **
  ******************************************************************************
  *****************************************************************************/
-/* $XFree86: xc/lib/Xp/XpGetData.c,v 1.4 2001/01/17 19:43:02 dawes Exp $ */
 
 #define NEED_REPLIES
 
@@ -66,12 +64,8 @@ typedef struct {
  * XpGetDocumentData().
  */
 static Bool
-_XpGetDocDataHandler(dpy, rep, buf, len, adata)
-    register Display *dpy;
-    register xReply *rep;
-    char *buf;
-    int len;
-    XPointer adata;
+_XpGetDocDataHandler(Display *dpy, xReply *rep,
+		     char *buf, int len, XPointer adata)
 {
     register _XpState            *state;
     xPrintGetDocumentDataReply   replbuf;

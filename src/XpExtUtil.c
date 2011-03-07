@@ -1,10 +1,9 @@
-/* $Xorg: XpExtUtil.c,v 1.3 2000/08/17 19:46:06 cpqbld Exp $ */
 /******************************************************************************
  ******************************************************************************
  **
  ** (c) Copyright 1996 Hewlett-Packard Company
  ** (c) Copyright 1996 International Business Machines Corp.
- ** (c) Copyright 1996 Sun Microsystems, Inc.
+ ** (c) Copyright 1996, Oracle and/or its affiliates. All rights reserved.
  ** (c) Copyright 1996 Novell, Inc.
  ** (c) Copyright 1996 Digital Equipment Corp.
  ** (c) Copyright 1996 Fujitsu Limited
@@ -34,7 +33,6 @@
  **
  ******************************************************************************
  *****************************************************************************/
-/* $XFree86: xc/lib/Xp/XpExtUtil.c,v 1.7 2002/10/16 00:37:31 dawes Exp $ */
 
 #define NEED_EVENTS
 #define NEED_REPLIES
@@ -54,10 +52,10 @@ static XExtensionInfo     xp_info_data;
 static XExtensionInfo     *xp_info = &xp_info_data;
 static /* const */ char   *xp_extension_name = XP_PRINTNAME;
 
-static int    XpClose();
-static char   *XpError();
-static Bool   XpWireToEvent();
-static Status XpEventToWire();
+static int    XpClose(Display *, XExtCodes *);
+static char   *XpError(Display *, int, XExtCodes *, char *, int);
+static Bool   XpWireToEvent(Display *, XEvent *, xEvent *);
+static Status XpEventToWire(Display *, XEvent *, xEvent **, int *);
 
 #define XpCheckExtension(dpy,i,val) \
   XextCheckExtension (dpy, i, xp_extension_name, val)
@@ -117,9 +115,7 @@ static XPrintLocalExtensionVersion xpprintversions[] = {{XP_ABSENT,0,0},
  * xpprintversions[version_index] shows which version *this* library is.
  */
 
-int XpCheckExtInitUnlocked(dpy, version_index)
-    register	Display *dpy;
-    register	int	version_index;
+int XpCheckExtInitUnlocked(Display *dpy, int version_index)
 {
     XExtDisplayInfo 	*info = xp_find_display (dpy);
 
@@ -175,9 +171,7 @@ int XpCheckExtInitUnlocked(dpy, version_index)
     return (0);
 }
 
-int XpCheckExtInit(dpy, version_index)
-    register	Display *dpy;
-    register	int	version_index;
+int XpCheckExtInit(Display *dpy, int version_index)
 {
     int retval;
     
@@ -197,9 +191,7 @@ int XpCheckExtInit(dpy, version_index)
  */
 
 static int
-XpClose (dpy, codes)
-    Display *dpy;
-    XExtCodes *codes;
+XpClose (Display *dpy, XExtCodes *codes)
     {
     XExtDisplayInfo 	*info = xp_find_display (dpy);
 
@@ -227,10 +219,7 @@ XpClose (dpy, codes)
  * Reformat a wire event into an XEvent structure of the right type.
  */
 static Bool
-XpWireToEvent (dpy, re, event)
-    Display	*dpy;
-    XEvent	*re;
-    xEvent	*event;
+XpWireToEvent (Display *dpy, XEvent *re, xEvent *event)
 {
     XExtDisplayInfo *info = xp_find_display (dpy);
 
@@ -290,11 +279,11 @@ XpWireToEvent (dpy, re, event)
  * Reformat an XEvent into a wire event.
  */
 static Status
-XpEventToWire(dpy, re, event, count)
-    register Display *dpy;      /* pointer to display structure */
-    register XEvent *re;        /* pointer to client event */
-    register xEvent **event;    /* wire protocol event */
-    register int *count;
+XpEventToWire(
+    Display *dpy,      /* pointer to display structure */
+    XEvent *re,        /* pointer to client event */
+    xEvent **event,    /* wire protocol event */
+    int *count)
 {
     XExtDisplayInfo *info = (XExtDisplayInfo *) xp_find_display (dpy);
 

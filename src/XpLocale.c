@@ -1,10 +1,9 @@
-/* $Xorg: XpLocale.c,v 1.3 2000/08/17 19:46:07 cpqbld Exp $ */
 /******************************************************************************
  ******************************************************************************
  **
  ** (c) Copyright 1996 Hewlett-Packard Company
  ** (c) Copyright 1996 International Business Machines Corp.
- ** (c) Copyright 1996 Sun Microsystems, Inc.
+ ** (c) Copyright 1996, Oracle and/or its affiliates. All rights reserved.
  ** (c) Copyright 1996 Novell, Inc.
  ** (c) Copyright 1996 Digital Equipment Corp.
  ** (c) Copyright 1996 Fujitsu Limited
@@ -34,7 +33,6 @@
  **
  ******************************************************************************
  *****************************************************************************/
-/* $XFree86: xc/lib/Xp/XpLocale.c,v 1.4 2001/01/17 19:43:02 dawes Exp $ */
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -54,8 +52,6 @@ char         *_xp_hinter_desc = NULL;
 int           _xp_hinter_init = 1;	/* need to init */
 
 
-extern char *_xpstrdup();
-
 
 /******************************************************************************
  *
@@ -63,7 +59,7 @@ extern char *_xpstrdup();
  *
  * Make changes here only.
  */
-static char *_XpLocaleHinter()
+static char *_XpLocaleHinter(void)
 {
 #ifdef hpux
     char lbuf[ LC_BUFSIZ ];
@@ -180,7 +176,7 @@ XpGetLocaleHinter (
  *
  * If neither a hint or description exists, a NULL is returned.
  */
-char *XpGetLocaleNetString()
+char *XpGetLocaleNetString(void)
 {
     XPHinterProc  locale_hinter;
 
