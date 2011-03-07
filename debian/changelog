@@ -1,3 +1,9 @@
+libxp (1:1.0.1-1) UNRELEASED; urgency=low
+
+  * New upstream release.
+
+ -- Cyril Brulebois <kibi@debian.org>  Tue, 08 Mar 2011 00:11:40 +0100
+
 libxp (1:1.0.0.xsf1-2) unstable; urgency=low
 
   [ Brice Goglin ]
