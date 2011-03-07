@@ -6,6 +6,7 @@ libxp (1:1.0.1-1) UNRELEASED; urgency=low
   * Add xutils-dev build-dep for xorg-macros (although we don't run
     autoreconf — yet?).
   * Wrap Depends.
+  * Update libxp6-dbg's section: libdevel → debug.
 
  -- Cyril Brulebois <kibi@debian.org>  Tue, 08 Mar 2011 00:11:40 +0100
 

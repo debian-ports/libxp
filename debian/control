@@ -33,7 +33,7 @@ Description: X Printing Extension (Xprint) client library
  git://anongit.freedesktop.org/git/xorg/lib/libXp
 
 Package: libxp6-dbg
-Section: libdevel
+Section: debug
 Priority: extra
 Architecture: any
 Depends:
