@@ -13,6 +13,7 @@ libxp (1:1.0.1-1) UNRELEASED; urgency=low
   * Add myself to Uploaders.
   * Fix a bunch of lintian warnings:
     - Add ${misc:Depends} to all Depends.
+    - Remove Debian revision from the libx11-dev build-dep.
 
  -- Cyril Brulebois <kibi@debian.org>  Tue, 08 Mar 2011 00:11:40 +0100
 
