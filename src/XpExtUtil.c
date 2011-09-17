@@ -8,7 +8,7 @@
  ** (c) Copyright 1996 Digital Equipment Corp.
  ** (c) Copyright 1996 Fujitsu Limited
  ** (c) Copyright 1996 Hitachi, Ltd.
- ** 
+ **
  ** Permission is hereby granted, free of charge, to any person obtaining a copy
  ** of this software and associated documentation files (the "Software"), to deal
  ** in the Software without restriction, including without limitation the rights
@@ -91,7 +91,7 @@ static char *XpErrorList[ /* XP_ERRORS */ ] = {
 	"XPBadResourceID"
 };
 
-XEXT_GENERATE_FIND_DISPLAY (xp_find_display, xp_info, 
+XEXT_GENERATE_FIND_DISPLAY (xp_find_display, xp_info,
 	xp_extension_name, &xpprint_extension_hooks, XP_EVENTS, NULL)
 
 static XEXT_GENERATE_ERROR_STRING (XpError, xp_extension_name,
@@ -167,18 +167,18 @@ int XpCheckExtInitUnlocked(Display *dpy, int version_index)
 	    return (-1);
 	}
     }
-    
+
     return (0);
 }
 
 int XpCheckExtInit(Display *dpy, int version_index)
 {
     int retval;
-    
+
     _XLockMutex(_Xglobal_lock);
-    
+
     retval = XpCheckExtInitUnlocked(dpy, version_index);
-    
+
     _XUnlockMutex(_Xglobal_lock);
 
     return retval;

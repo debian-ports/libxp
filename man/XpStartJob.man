@@ -7,18 +7,18 @@
 .\" Copyright 1996 Fujitsu Limited
 .\" Copyright 1996 Hitachi, Ltd.
 .\" Copyright 1996 X Consortium, Inc.
-.\" 
-.\" Permission is hereby granted, free of charge, to any person obtaining a 
+.\"
+.\" Permission is hereby granted, free of charge, to any person obtaining a
 .\" copy of this software and associated documentation files (the "Software"),
-.\" to deal in the Software without restriction, including without limitation 
+.\" to deal in the Software without restriction, including without limitation
 .\" the rights to use, copy, modify, merge, publish, distribute,
 .\" sublicense, and/or sell copies of the Software, and to permit persons
 .\" to whom the Software is furnished to do so, subject to the following
 .\" conditions:
-.\" 
+.\"
 .\" The above copyright notice and this permission notice shall be
 .\" included in all copies or substantial portions of the Software.
-.\" 
+.\"
 .\" THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 .\" EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 .\" MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -26,7 +26,7 @@
 .\" DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 .\" OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
 .\" THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-.\" 
+.\"
 .\" Except as contained in this notice, the names of the copyright holders
 .\" shall not be used in advertising or otherwise to promote the sale, use
 .\" or other dealings in this Software without prior written authorization
@@ -37,10 +37,10 @@
 XpStartJob \-  Indicates the beginning of a single print job.
 .SH SYNOPSIS
 .br
-      cc [ flag... ] file... -lXp [ library... ]	
+      cc [ flag... ] file... -lXp [ library... ]
 .br
       #include <X11/extensions/Print.h>
-.LP    
+.LP
 .B void XpStartJob
 (
 .I display,
@@ -63,35 +63,35 @@ Specifies how the printer output data is to be handled.
 .LP
 XpStartJob signals the beginning of a new print job.
 
-If 
-.I output_mode 
-is XPSpool the X Print Server will automatically spool the 
-printer output. If 
-.I output_mode 
-is XPGetData, then the X Print Server buffers the 
-document output for retrieval by XpGetDocumentData. In this case, the print 
-server suspends processing further requests on this print context until some 
-other client sends XpGetDocumentData. Subsequent operations that use the print 
-context may be suspended at any time pending the processing of XpGetDocumentData 
+If
+.I output_mode
+is XPSpool the X Print Server will automatically spool the
+printer output. If
+.I output_mode
+is XPGetData, then the X Print Server buffers the
+document output for retrieval by XpGetDocumentData. In this case, the print
+server suspends processing further requests on this print context until some
+other client sends XpGetDocumentData. Subsequent operations that use the print
+context may be suspended at any time pending the processing of XpGetDocumentData
 replies to read any buffered output.
 
 
-XpStartJob sets the job-owner job attribute (included in the XPJobAttr pool) 
-immediately prior to issuing the PrintStartJob request. On POSIX systems, the 
-job-owner attribute is set using getpwuid_r on the result of getuid. This 
+XpStartJob sets the job-owner job attribute (included in the XPJobAttr pool)
+immediately prior to issuing the PrintStartJob request. On POSIX systems, the
+job-owner attribute is set using getpwuid_r on the result of getuid. This
 attribute may be used by the X Print Server to identify the user to the spooler.
 
-All changes to the XPJobAttr attribute pool (see XpSetAttributes) must be made 
-prior to calling XpStartJob, after which an XPBadSequence will be generated if 
+All changes to the XPJobAttr attribute pool (see XpSetAttributes) must be made
+prior to calling XpStartJob, after which an XPBadSequence will be generated if
 changes are attempted, until XpEndJob is called.
 
-For clients selecting XPPrintMask (see XpSelectInput), the event XPPrintNotify 
-will be generated with its detail field set to XPStartJobNotify when the X Print 
+For clients selecting XPPrintMask (see XpSelectInput), the event XPPrintNotify
+will be generated with its detail field set to XPStartJobNotify when the X Print
 Server has completed the PrintStartJob request.
 
-Conceptually, a "Job" is a collection of "Documents", where each Document is in 
-turn a collection of "Pages". Depending on the print facilities underlying the X 
-Print Server, these delineations may be mapped by a DDX driver into real 
+Conceptually, a "Job" is a collection of "Documents", where each Document is in
+turn a collection of "Pages". Depending on the print facilities underlying the X
+Print Server, these delineations may be mapped by a DDX driver into real
 functionality (e.g. see the server attribute multiple-documents-supported).
 
 .SH STRUCTURES
@@ -102,8 +102,8 @@ The XPSaveData values for output_mode are defined in <X11/extensions/Print.h>.
 
     #define XPSpool               1   /\(** Job data sent to spooler */
     #define XPGetData             2   /\(** Job data via XpGetDocumentData */
-    
-.fi    
+
+.fi
 
 .SH DIAGNOSTICS
 .TP 15
@@ -114,8 +114,8 @@ The value specified for output_mode is not valid.
 A valid print context-id has not been set prior to making this call.
 .TP 15
 .SM XPBadSequence
-The function was not called in the proper order with respect to the other X 
-Print Service 
+The function was not called in the proper order with respect to the other X
+Print Service
 Extension calls (example, XpEndDoc prior to XpStartDoc).
 .SH "SEE ALSO"
 .BR XpEndJob (3Xp),

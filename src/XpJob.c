@@ -8,7 +8,7 @@
  ** (c) Copyright 1996 Digital Equipment Corp.
  ** (c) Copyright 1996 Fujitsu Limited
  ** (c) Copyright 1996 Hitachi, Ltd.
- ** 
+ **
  ** Permission is hereby granted, free of charge, to any person obtaining a copy
  ** of this software and associated documentation files (the "Software"), to deal
  ** in the Software without restriction, including without limitation the rights
@@ -71,7 +71,7 @@ static Bool _XpDiscardJob(Display *dpy, XEvent *event, XPointer arg)
 
     if (disrec->context != ((XPPrintEvent *) event)->context)
 	return False;
-    
+
     if ((((XPPrintEvent *) event)->detail == XPEndJobNotify) ||
 	(((XPPrintEvent *) event)->detail == XPEndDocNotify) ||
 	(((XPPrintEvent *) event)->detail == XPEndPageNotify))  {
