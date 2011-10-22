@@ -65,6 +65,7 @@ Description: X Printing Extension (Xprint) client library (unstripped)
 Package: libxp-dev
 Section: libdevel
 Architecture: any
+Multi-Arch: same
 Depends:
  ${misc:Depends},
  libxp6 (= ${binary:Version}),
