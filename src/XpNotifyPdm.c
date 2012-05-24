@@ -231,7 +231,7 @@ XpGetPdmStartParams (
 	/*
 	 * Error - cannot determine or establish a selection_display.
 	 */
-	return( (Status) NULL );
+	return( (Status) 0 );
     }
 
     /*
@@ -268,7 +268,7 @@ XpGetPdmStartParams (
 	    XCloseDisplay( *selection_display );
 	    *selection_display = (Display *) NULL;
 	}
-	return( (Status) NULL );
+	return( (Status) 0 );
     }
 
     status = XmbTextListToTextProperty( *selection_display, list, 6,
@@ -283,7 +283,7 @@ XpGetPdmStartParams (
 	    XCloseDisplay( *selection_display );
 	    *selection_display = (Display *) NULL;
 	}
-	return( (Status) NULL );
+	return( (Status) 0 );
     }
 
     *type              = text_prop.encoding;
