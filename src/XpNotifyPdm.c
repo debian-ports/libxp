@@ -68,7 +68,7 @@
 /*
  * str_dup using Xmalloc
  */
-char *_xpstrdup(char * str)
+char *_xpstrdup(const char * str)
 {
     int len;
     char *newstr;
@@ -104,7 +104,7 @@ _XpGetSelectionServer (
     char          *tstr1, *tstr2, *tstr3, *tstrptr;
     char          *sel_displaystr;
     Display       *sel_display;
-    char          *selectionstr;
+    const char    *selectionstr;
 
 
     /*
@@ -727,7 +727,7 @@ XpNotifyPdm (
     enum { XA_PDM_CLIENT_PROP, XA_PDM_START, XA_PDM_START_OK,
 	   XA_PDM_START_VXAUTH, XA_PDM_START_PXAUTH, XA_PDM_START_ERROR,
 	   NUM_ATOMS };
-    static char *atom_names[] = {
+    static const char *atom_names[] = {
       "PDM_CLIENT_PROP", "PDM_START", "PDM_START_OK",
       "PDM_START_VXAUTH", "PDM_START_PXAUTH", "PDM_START_ERROR" };
 
@@ -791,7 +791,7 @@ XpNotifyPdm (
     /*
      * Create property and transfer data to.
      */
-    XInternAtoms( sel_display, atom_names, NUM_ATOMS, False, atoms );
+    XInternAtoms( sel_display, (char **) atom_names, NUM_ATOMS, False, atoms );
 
     XChangeProperty( sel_display,
 		     sel_window, atoms[XA_PDM_CLIENT_PROP],

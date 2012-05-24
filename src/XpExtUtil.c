@@ -50,7 +50,7 @@
 
 static XExtensionInfo     xp_info_data;
 static XExtensionInfo     *xp_info = &xp_info_data;
-static /* const */ char   *xp_extension_name = XP_PRINTNAME;
+static const char         *xp_extension_name = XP_PRINTNAME;
 
 static int    XpClose(Display *, XExtCodes *);
 static char   *XpError(Display *, int, XExtCodes *, char *, int);
@@ -85,7 +85,7 @@ typedef struct _xpPrintData {
     XPrintLocalExtensionVersion   *vers;
 } xpPrintData;
 
-static char *XpErrorList[ /* XP_ERRORS */ ] = {
+static const char *XpErrorList[ /* XP_ERRORS */ ] = {
 	"XPBadContext",
 	"XPBadSequence",
 	"XPBadResourceID"

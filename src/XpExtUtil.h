@@ -45,7 +45,7 @@ extern int XpCheckExtInitUnlocked(
 );
 
 extern char *_xpstrdup(
-    char *	/* str */
+    const char * /* str */
 );
 
 _XFUNCPROTOEND
