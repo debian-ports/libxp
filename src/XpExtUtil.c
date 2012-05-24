@@ -55,7 +55,7 @@ static /* const */ char   *xp_extension_name = XP_PRINTNAME;
 static int    XpClose(Display *, XExtCodes *);
 static char   *XpError(Display *, int, XExtCodes *, char *, int);
 static Bool   XpWireToEvent(Display *, XEvent *, xEvent *);
-static Status XpEventToWire(Display *, XEvent *, xEvent **, int *);
+static Status XpEventToWire(Display *, XEvent *, xEvent *);
 
 #define XpCheckExtension(dpy,i,val) \
   XextCheckExtension (dpy, i, xp_extension_name, val)
@@ -282,8 +282,7 @@ static Status
 XpEventToWire(
     Display *dpy,      /* pointer to display structure */
     XEvent *re,        /* pointer to client event */
-    xEvent **event,    /* wire protocol event */
-    int *count)
+    xEvent *event)     /* wire protocol event */
 {
     XExtDisplayInfo *info = (XExtDisplayInfo *) xp_find_display (dpy);
 
@@ -339,6 +338,6 @@ XpEventToWire(
 #endif /* PRINT_SomeEventExample2 */
 
         default:
-            return(_XUnknownNativeEvent(dpy, re, *event));
+            return(_XUnknownNativeEvent(dpy, re, event));
         }
 }
