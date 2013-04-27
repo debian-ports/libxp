@@ -42,6 +42,7 @@
 #include <X11/extensions/Printstr.h>
 #include <X11/Xlibint.h>
 #include "XpExtUtil.h"
+#include <limits.h>
 
 #define _XpPadOut(len) (((len) + 3) & ~3)
 
@@ -62,7 +63,7 @@ XpGetPrinterList (
     long	dataLenVR;
     CARD8	*dataVR;	/* aka STRING8 */
 
-    XPPrinterList ptr_list;
+    XPPrinterList ptr_list = NULL;
 
     XExtDisplayInfo *info = (XExtDisplayInfo *) xp_find_display (dpy);
 
@@ -128,13 +129,12 @@ XpGetPrinterList (
     *list_count = rep.listCount;
 
     if (*list_count) {
-	ptr_list = (XPPrinterList)
-		Xmalloc( (unsigned) (sizeof(XPPrinterRec) * (*list_count + 1)));
+	if (rep.listCount < (INT_MAX / sizeof(XPPrinterRec)))
+	    ptr_list = Xmalloc(sizeof(XPPrinterRec) * (*list_count + 1));
 
 	if (!ptr_list) {
-            UnlockDisplay(dpy);
-            SyncHandle();
-            return ( (XPPrinterList) NULL ); /* malloc error */
+	    _XEatDataWords(dpy, rep.length);
+	    goto out;
 	}
 
 	/*
@@ -150,16 +150,17 @@ XpGetPrinterList (
 	    _XRead32 (dpy, &dataLenVR, (long) sizeof(CARD32) );
 
 	    if (dataLenVR) {
-		dataVR = (CARD8 *) Xmalloc( (unsigned) dataLenVR + 1 );
+		if (dataLenVR < INT_MAX)
+		    dataVR = Xmalloc(dataLenVR + 1);
+		else
+		    dataVR = NULL;
 
 		if (!dataVR) {
-		    UnlockDisplay(dpy);
-		    SyncHandle();
-		    return ( (XPPrinterList) NULL ); /* malloc error */
+		    _XEatData(dpy, dataLenVR);
+		} else {
+		    _XReadPad (dpy, (char *) dataVR, (long) dataLenVR);
+		    dataVR[dataLenVR] = 0;
 		}
-
-		_XReadPad (dpy, (char *) dataVR, (long) dataLenVR);
-		dataVR[dataLenVR] = 0;
 		ptr_list[i].name = (char *) dataVR;
 	    }
 	    else {
@@ -172,16 +173,17 @@ XpGetPrinterList (
 	    _XRead32 (dpy, &dataLenVR, (long) sizeof(CARD32) );
 
 	    if (dataLenVR) {
-		dataVR = (CARD8 *) Xmalloc( (unsigned) dataLenVR + 1 );
+		if (dataLenVR < INT_MAX)
+		    dataVR = Xmalloc(dataLenVR + 1);
+		else
+		    dataVR = NULL;
 
 		if (!dataVR) {
-		    UnlockDisplay(dpy);
-		    SyncHandle();
-		    return ( (XPPrinterList) NULL ); /* malloc error */
+		    _XEatData(dpy, dataLenVR);
+		} else {
+		    _XReadPad (dpy, (char *) dataVR, (long) dataLenVR);
+		    dataVR[dataLenVR] = 0;
 		}
-
-		_XReadPad (dpy, (char *) dataVR, (long) dataLenVR);
-		dataVR[dataLenVR] = 0;
 		ptr_list[i].desc = (char *) dataVR;
 	    }
 	    else {
@@ -193,6 +195,7 @@ XpGetPrinterList (
 	ptr_list = (XPPrinterList) NULL;
     }
 
+  out:
     UnlockDisplay(dpy);
     SyncHandle();
 
