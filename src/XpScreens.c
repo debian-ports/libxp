@@ -42,6 +42,7 @@
 #include <X11/extensions/Printstr.h>
 #include <X11/Xlibint.h>
 #include "XpExtUtil.h"
+#include <limits.h>
 
 
 Screen **
@@ -82,19 +83,17 @@ XpQueryScreens (
     *list_count = rep.listCount;
 
     if (*list_count) {
-	scr_list = (Screen **)
-		   Xmalloc( (unsigned) (sizeof(Screen *) * *list_count) );
+	if (rep.listCount < (INT_MAX / sizeof(Screen *)))
+	    scr_list = Xmalloc(sizeof(Screen *) * *list_count);
+	else
+	    scr_list = NULL;
 
 	if (!scr_list) {
-            UnlockDisplay(dpy);
-            SyncHandle();
-            return ( (Screen **) NULL ); /* malloc error */
+	    _XEatDataWords(dpy, rep.length);
+	    goto out;
 	}
 	i = 0;
 	while(i < *list_count){
-	    /*
-	     * Pull printer length and then name.
-	     */
 	    _XRead32 (dpy, &rootWindow, (long) sizeof(CARD32) );
 	    scr_list[i] = NULL;
 	    for ( j = 0; j < XScreenCount(dpy); j++ ) {
@@ -118,6 +117,7 @@ XpQueryScreens (
 	scr_list = (Screen **) NULL;
     }
 
+  out:
     UnlockDisplay(dpy);
     SyncHandle();
 
