@@ -45,6 +45,12 @@ AC_PROG_LIBTOOL
 # Check for X and print proto
 PKG_CHECK_MODULES(XPRINT, x11 xext xextproto xau printproto)
 
+# Check for _XEatDataWords function that may be patched into older Xlib release
+SAVE_LIBS="$LIBS"
+LIBS="$XPRINT_LIBS"
+AC_CHECK_FUNCS([_XEatDataWords])
+LIBS="$SAVE_LIBS"
+
 AC_CONFIG_FILES([Makefile
 		 src/Makefile
 		 man/Makefile
