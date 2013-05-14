@@ -1,3 +1,9 @@
+libxp (1:1.0.1-2+deb7u1) wheezy-security; urgency=high
+
+  * integer overflows calculating memory needs for replies [CVE-2013-2062]
+
+ -- Julien Cristau <jcristau@debian.org>  Tue, 14 May 2013 17:04:24 +0200
+
 libxp (1:1.0.1-2) unstable; urgency=low
 
   [ Julien Cristau ]
