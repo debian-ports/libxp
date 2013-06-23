@@ -1,8 +1,6 @@
-libxp (1:1.0.1-2+deb7u2) UNRELEASED; urgency=low
+libxp (1:1.0.2-1) UNRELEASED; urgency=low
 
-  * autoreconf to pick up configure changes.  Unfortunately this doesn't seem
-    to have been done since 2008, so we pick up a lot more changes than the
-    small one we care about :(
+  * New upstream release.
 
  -- Julien Cristau <jcristau@debian.org>  Tue, 14 May 2013 20:29:08 +0200
 
