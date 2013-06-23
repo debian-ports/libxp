@@ -1,8 +1,10 @@
-libxp (1:1.0.2-1) UNRELEASED; urgency=low
+libxp (1:1.0.2-1) unstable; urgency=low
 
   * New upstream release.
+    + autoreconf to pick up configure changes (closes: #713608)
+    + stop trying to use NULL for Status values
 
- -- Julien Cristau <jcristau@debian.org>  Tue, 14 May 2013 20:29:08 +0200
+ -- Julien Cristau <jcristau@debian.org>  Sun, 23 Jun 2013 15:51:50 +0200
 
 libxp (1:1.0.1-2+deb7u1) wheezy-security; urgency=high
 
