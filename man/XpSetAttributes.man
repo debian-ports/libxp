@@ -7,18 +7,18 @@
 .\" Copyright 1996 Fujitsu Limited
 .\" Copyright 1996 Hitachi, Ltd.
 .\" Copyright 1996 X Consortium, Inc.
-.\" 
-.\" Permission is hereby granted, free of charge, to any person obtaining a 
+.\"
+.\" Permission is hereby granted, free of charge, to any person obtaining a
 .\" copy of this software and associated documentation files (the "Software"),
-.\" to deal in the Software without restriction, including without limitation 
+.\" to deal in the Software without restriction, including without limitation
 .\" the rights to use, copy, modify, merge, publish, distribute,
 .\" sublicense, and/or sell copies of the Software, and to permit persons
 .\" to whom the Software is furnished to do so, subject to the following
 .\" conditions:
-.\" 
+.\"
 .\" The above copyright notice and this permission notice shall be
 .\" included in all copies or substantial portions of the Software.
-.\" 
+.\"
 .\" THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 .\" EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 .\" MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -26,7 +26,7 @@
 .\" DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 .\" OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
 .\" THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-.\" 
+.\"
 .\" Except as contained in this notice, the names of the copyright holders
 .\" shall not be used in advertising or otherwise to promote the sale, use
 .\" or other dealings in this Software without prior written authorization
@@ -34,20 +34,20 @@
 .\"
 .TH XpSetAttributes 3Xp __xorgversion__ "XPRINT FUNCTIONS"
 .SH NAME
-XpSetAttributes \- Sets or updates an attribute pool in the specified print 
+XpSetAttributes \- Sets or updates an attribute pool in the specified print
 context.
 .SH SYNOPSIS
 .br
-      cc [ flag... ] file... -lXp [ library... ]	
+      cc [ flag... ] file... -lXp [ library... ]
 .br
       #include <X11/extensions/Print.h>
-.LP    
+.LP
 .B void XpSetAttributes
 (
-.I display, 
-.I context, 
-.I type, 
-.I pool, 
+.I display,
+.I context,
+.I type,
+.I pool,
 .I replacement_rule
 )
 .br
@@ -80,48 +80,48 @@ An attribute pool represented as a resource string. Encoded in COMPOUND_TEXT.
 Either XPAttrReplace orXPAttrMerge.
 .SH DESCRIPTION
 .LP
-XpSetAttributes accepts pool, a COMPOUND_TEXT resource string representing new 
-name-value pairs for the attribute pool specified by type. The attribute pool 
-is modified by the new name-value pairs according to replacement_rule. For 
-XPAttrReplace, the existing attribute pool is discarded and replaced with 
-pool. For XPAttrMerge, pool is merged into the existing attribute pool; 
-pre-existing name-value pairs are replaced, and non-existing name-value pairs 
-are added. The contents of pool is not affected by this call, and can be freed 
+XpSetAttributes accepts pool, a COMPOUND_TEXT resource string representing new
+name-value pairs for the attribute pool specified by type. The attribute pool
+is modified by the new name-value pairs according to replacement_rule. For
+XPAttrReplace, the existing attribute pool is discarded and replaced with
+pool. For XPAttrMerge, pool is merged into the existing attribute pool;
+pre-existing name-value pairs are replaced, and non-existing name-value pairs
+are added. The contents of pool is not affected by this call, and can be freed
 by the caller afterwards.
 
-When setting supported attribute names, the X Print Server and associated 
-driver will validate the new values and ignore those that are invalid; 
-previous values remain unchanged. When setting unsupported (that is, unknown) 
-attribute names, no validation is done, and the name-value pairs will be set, 
-even though they will not be used. When deleting (that is, failing to reset 
-with XPAttrReplace) a supported attribute name, the X Print Server explicitly 
+When setting supported attribute names, the X Print Server and associated
+driver will validate the new values and ignore those that are invalid;
+previous values remain unchanged. When setting unsupported (that is, unknown)
+attribute names, no validation is done, and the name-value pairs will be set,
+even though they will not be used. When deleting (that is, failing to reset
+with XPAttrReplace) a supported attribute name, the X Print Server explicitly
 or implicitly resets the attribute to a default value.
 
-When setting certain supported attributes, the X Print Server may modify other 
-associated attributes. For example, considering the XPPrinterAttr attribute 
-document-formats-supported, setting the XPDocAttr attribute document-format 
+When setting certain supported attributes, the X Print Server may modify other
+associated attributes. For example, considering the XPPrinterAttr attribute
+document-formats-supported, setting the XPDocAttr attribute document-format
 may cause a number of other attributes to change.
 
-For attribute pools that are read-only (see "get only" in XPAttributes 
-definition), attempting to use XpSetAttributes generates a BadMatch. For 
-attribute pools that are writable, lists of the supported attributes can be 
+For attribute pools that are read-only (see "get only" in XPAttributes
+definition), attempting to use XpSetAttributes generates a BadMatch. For
+attribute pools that are writable, lists of the supported attributes can be
 found in the XPPrinterAttr pool.
 
-The lifetime of all attribute pools are bounded by the lifetime of the print 
-context they are contained in. When set, all attribute values will be retained 
-across all Xp operations, until changed by the user directly, the X Print 
-Server directly, or changed because of a side effect when either the user or X 
+The lifetime of all attribute pools are bounded by the lifetime of the print
+context they are contained in. When set, all attribute values will be retained
+across all Xp operations, until changed by the user directly, the X Print
+Server directly, or changed because of a side effect when either the user or X
 Print Server changed another attribute value.
 
-Refer to a complete description of all print attributes, the precedence 
-between print attributes, and the side effects of setting certain print 
-attributes on other print attributes, etc. 
+Refer to a complete description of all print attributes, the precedence
+between print attributes, and the side effects of setting certain print
+attributes on other print attributes, etc.
 
-To monitor changes to the attribute pools, see XpSelectInput and the event 
-XPAttributeNotify. Since a print context can be shared among clients, changes 
-made by one client will be seen by all others, and if selected for, the event 
-XPAttributeNotify will be sent to all clients referencing the print context 
-when changes do occur. It is the responsibility of the clients sharing a print 
+To monitor changes to the attribute pools, see XpSelectInput and the event
+XPAttributeNotify. Since a print context can be shared among clients, changes
+made by one client will be seen by all others, and if selected for, the event
+XPAttributeNotify will be sent to all clients referencing the print context
+when changes do occur. It is the responsibility of the clients sharing a print
 context to coordinate their operations.
 .SH STRUCTURES
 The values for the typedef XPAttributes in <X11/extensions/Print.h> are:
@@ -156,8 +156,8 @@ The value specified for type is not valid.
 The specified print context-id is not valid.
 .TP 15
 .SM XPBadSequence
-A request to set an attribute pool occurred at a time when the attribute pool 
-could not be modified (for example, modifying XPJobAttr immediately after 
+A request to set an attribute pool occurred at a time when the attribute pool
+could not be modified (for example, modifying XPJobAttr immediately after
 calling XpStartJob).
 .SH FILES
 .PD 0

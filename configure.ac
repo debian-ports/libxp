@@ -1,6 +1,6 @@
-dnl 
+dnl
 dnl  Copyright © 2003 Keith Packard, Noah Levitt
-dnl 
+dnl
 dnl  Permission to use, copy, modify, distribute, and sell this software and its
 dnl  documentation for any purpose is hereby granted without fee, provided that
 dnl  the above copyright notice appear in all copies and that both that
@@ -10,7 +10,7 @@ dnl  advertising or publicity pertaining to distribution of the software without
 dnl  specific, written prior permission.  Keith Packard makes no
 dnl  representations about the suitability of this software for any purpose.  It
 dnl  is provided "as is" without express or implied warranty.
-dnl 
+dnl
 dnl  KEITH PACKARD DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE,
 dnl  INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO
 dnl  EVENT SHALL KEITH PACKARD BE LIABLE FOR ANY SPECIAL, INDIRECT OR
@@ -24,7 +24,7 @@ dnl Process this file with autoconf to create configure.
 AC_PREREQ([2.60])
 
 # Initialize Autoconf
-AC_INIT([libXp],[1.0.1],
+AC_INIT([libXp],[1.0.2],
         [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg],[libXp])
 AC_CONFIG_SRCDIR([Makefile.am])
 AC_CONFIG_HEADERS([config.h])

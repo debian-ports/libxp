@@ -7,18 +7,18 @@
 .\" Copyright 1996 Fujitsu Limited
 .\" Copyright 1996 Hitachi, Ltd.
 .\" Copyright 1996 X Consortium, Inc.
-.\" 
-.\" Permission is hereby granted, free of charge, to any person obtaining a 
+.\"
+.\" Permission is hereby granted, free of charge, to any person obtaining a
 .\" copy of this software and associated documentation files (the "Software"),
-.\" to deal in the Software without restriction, including without limitation 
+.\" to deal in the Software without restriction, including without limitation
 .\" the rights to use, copy, modify, merge, publish, distribute,
 .\" sublicense, and/or sell copies of the Software, and to permit persons
 .\" to whom the Software is furnished to do so, subject to the following
 .\" conditions:
-.\" 
+.\"
 .\" The above copyright notice and this permission notice shall be
 .\" included in all copies or substantial portions of the Software.
-.\" 
+.\"
 .\" THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 .\" EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 .\" MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -26,7 +26,7 @@
 .\" DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 .\" OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
 .\" THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-.\" 
+.\"
 .\" Except as contained in this notice, the names of the copyright holders
 .\" shall not be used in advertising or otherwise to promote the sale, use
 .\" or other dealings in this Software without prior written authorization
@@ -37,14 +37,14 @@
 XpGetAttributes \- Gets an attribute pool from the specified print context.
 .SH SYNOPSIS
 .br
-      cc [ flag... ] file... -lXp [ library... ]	
+      cc [ flag... ] file... -lXp [ library... ]
 .br
       #include <X11/extensions/Print.h>
-.LP    
+.LP
 .B char *XpGetAttributes
 (
-.I display, 
-.I context, 
+.I display,
+.I context,
 .I type
 )
 .br
@@ -67,24 +67,24 @@ The print context from which the attribute pool is to be retrieved.
 Specifies the attribute pool.
 .SH DESCRIPTION
 .LP
-XpGetAttributes returns a pool, a COMPOUND_TEXT resource string representing the 
-attribute pool specified by type. The caller is expected to free pool when it is 
+XpGetAttributes returns a pool, a COMPOUND_TEXT resource string representing the
+attribute pool specified by type. The caller is expected to free pool when it is
 no longer needed using XFree.
 
-The attribute pool (hence the resource string) consists of many name-value pairs 
-(for example, "copy-count: 3"). The syntax of an attribute pool is the same as an 
+The attribute pool (hence the resource string) consists of many name-value pairs
+(for example, "copy-count: 3"). The syntax of an attribute pool is the same as an
 X resource file (see "Resource File Syntax" in the Xlib specification).
 
-Valid characters for each name (left hand side) are derived from the Posix which is 
-"a"-"z" and "A"="Z" and"0"-"9" and "_" and "-". Valid characters for each value 
-(right hand side) are all characters except NULL and unescaped NEWLINE, though all 
-predefined values in the X Print Service are confined to X Portable Character Set 
-(XPCS) characters. Non XPCS values are typically limited to localized "description" 
-strings. See XpCreateContext regarding the locale hint for more information on 
-localized 
+Valid characters for each name (left hand side) are derived from the Posix which is
+"a"-"z" and "A"="Z" and"0"-"9" and "_" and "-". Valid characters for each value
+(right hand side) are all characters except NULL and unescaped NEWLINE, though all
+predefined values in the X Print Service are confined to X Portable Character Set
+(XPCS) characters. Non XPCS values are typically limited to localized "description"
+strings. See XpCreateContext regarding the locale hint for more information on
+localized
 values.
 
-If any errors occur, 
+If any errors occur,
 .I XpGetAttributes
 returns NULL.
 .SH STRUCTURES

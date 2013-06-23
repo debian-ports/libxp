@@ -15,7 +15,7 @@
  ** (c) Copyright 1996 Digital Equipment Corp.
  ** (c) Copyright 1996 Fujitsu Limited
  ** (c) Copyright 1996 Hitachi, Ltd.
- ** 
+ **
  ** Permission is hereby granted, free of charge, to any person obtaining a copy
  ** of this software and associated documentation files (the "Software"), to deal
  ** in the Software without restriction, including without limitation the rights
@@ -68,7 +68,7 @@
 /*
  * str_dup using Xmalloc
  */
-char *_xpstrdup(char * str)
+char *_xpstrdup(const char * str)
 {
     int len;
     char *newstr;
@@ -104,7 +104,7 @@ _XpGetSelectionServer (
     char          *tstr1, *tstr2, *tstr3, *tstrptr;
     char          *sel_displaystr;
     Display       *sel_display;
-    char          *selectionstr;
+    const char    *selectionstr;
 
 
     /*
@@ -231,7 +231,7 @@ XpGetPdmStartParams (
 	/*
 	 * Error - cannot determine or establish a selection_display.
 	 */
-	return( (Status) NULL );
+	return( (Status) 0 );
     }
 
     /*
@@ -268,7 +268,7 @@ XpGetPdmStartParams (
 	    XCloseDisplay( *selection_display );
 	    *selection_display = (Display *) NULL;
 	}
-	return( (Status) NULL );
+	return( (Status) 0 );
     }
 
     status = XmbTextListToTextProperty( *selection_display, list, 6,
@@ -283,7 +283,7 @@ XpGetPdmStartParams (
 	    XCloseDisplay( *selection_display );
 	    *selection_display = (Display *) NULL;
 	}
-	return( (Status) NULL );
+	return( (Status) 0 );
     }
 
     *type              = text_prop.encoding;
@@ -692,7 +692,7 @@ XpCookieToPdm (
     if ((ttype != XA_WINDOW) && (tformat != 32) && (nitems != 1)) {
 	/*
 	 * Unable to read SelectionNotify property.
-	 */ 
+	 */
 	sprintf(cdata,
 	     "XpCookieToPdm: Unable to read SelectionNotify property" );
 	return( _xpstrdup( cdata ) );
@@ -725,9 +725,9 @@ XpNotifyPdm (
 )
 {
     enum { XA_PDM_CLIENT_PROP, XA_PDM_START, XA_PDM_START_OK,
-	   XA_PDM_START_VXAUTH, XA_PDM_START_PXAUTH, XA_PDM_START_ERROR, 
+	   XA_PDM_START_VXAUTH, XA_PDM_START_PXAUTH, XA_PDM_START_ERROR,
 	   NUM_ATOMS };
-    static char *atom_names[] = { 
+    static const char *atom_names[] = {
       "PDM_CLIENT_PROP", "PDM_START", "PDM_START_OK",
       "PDM_START_VXAUTH", "PDM_START_PXAUTH", "PDM_START_ERROR" };
 
@@ -791,7 +791,7 @@ XpNotifyPdm (
     /*
      * Create property and transfer data to.
      */
-    XInternAtoms( sel_display, atom_names, NUM_ATOMS, False, atoms );
+    XInternAtoms( sel_display, (char **) atom_names, NUM_ATOMS, False, atoms );
 
     XChangeProperty( sel_display,
 		     sel_window, atoms[XA_PDM_CLIENT_PROP],
@@ -842,7 +842,7 @@ XpNotifyPdm (
      * Read property content for status.
      */
     XGetWindowProperty( sel_display, sel_window,
-			atoms[XA_PDM_CLIENT_PROP], 
+			atoms[XA_PDM_CLIENT_PROP],
 			0, 100000, True, AnyPropertyType,
 			&ttype, &tformat, &nitems, &bytes_after,
 			&return_data );
@@ -864,7 +864,7 @@ XpNotifyPdm (
     if ((ttype != XA_ATOM) && (tformat != 32) && (nitems != 1)) {
 	/*
 	 * Unable to read SelectionNotify property.
-	 */ 
+	 */
 	sprintf(cdata,
 	     "XpNotifyPdm: Unable to read SelectionNotify property" );
 	return( _xpstrdup( cdata ) );

@@ -7,18 +7,18 @@
 .\" Copyright 1996 Fujitsu Limited
 .\" Copyright 1996 Hitachi, Ltd.
 .\" Copyright 1996 X Consortium, Inc.
-.\" 
-.\" Permission is hereby granted, free of charge, to any person obtaining a 
+.\"
+.\" Permission is hereby granted, free of charge, to any person obtaining a
 .\" copy of this software and associated documentation files (the "Software"),
-.\" to deal in the Software without restriction, including without limitation 
+.\" to deal in the Software without restriction, including without limitation
 .\" the rights to use, copy, modify, merge, publish, distribute,
 .\" sublicense, and/or sell copies of the Software, and to permit persons
 .\" to whom the Software is furnished to do so, subject to the following
 .\" conditions:
-.\" 
+.\"
 .\" The above copyright notice and this permission notice shall be
 .\" included in all copies or substantial portions of the Software.
-.\" 
+.\"
 .\" THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 .\" EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 .\" MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -26,7 +26,7 @@
 .\" DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 .\" OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
 .\" THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-.\" 
+.\"
 .\" Except as contained in this notice, the names of the copyright holders
 .\" shall not be used in advertising or otherwise to promote the sale, use
 .\" or other dealings in this Software without prior written authorization
@@ -37,10 +37,10 @@
 XpStartDoc \-  Indicates the beginning of a print document.
 .SH SYNOPSIS
 .br
-      cc [ flag... ] file... -lXp [ library... ]	
+      cc [ flag... ] file... -lXp [ library... ]
 .br
       #include <X11/extensions/Print.h>
-.LP    
+.LP
 .B void XpStartDoc
 (
 .I display,
@@ -63,31 +63,31 @@ Specifies the type of document. It can be either XPDocRaw or XPDocNormal.
 .LP
 XpStartDoc signals the beginning of a new print document.
 
-If type is XPDocRaw, then the client will provide all the data for the resulting 
-document using XpPutDocumentData; the X Print Server will not write any data 
-into the resulting document. Calling XpStartPage in a XPDocRaw document will 
+If type is XPDocRaw, then the client will provide all the data for the resulting
+document using XpPutDocumentData; the X Print Server will not write any data
+into the resulting document. Calling XpStartPage in a XPDocRaw document will
 generate an XPBadSequence error. For more information, see XpPutDocumentData.
 
-If type is XPDocNormal, then the X Print Server will generate document data, and 
-depending on the DDX driver, can incorporate additional data from 
+If type is XPDocNormal, then the X Print Server will generate document data, and
+depending on the DDX driver, can incorporate additional data from
 XpPutDocumentData into the output. For more information, see XpPutDocumentData.
 
-   
-All changes to the XPDocAttr attribute pool (see XpSetAttributes) must be made 
-prior to calling XpStartDoc, after which an XPBadSequence will be generated if 
+
+All changes to the XPDocAttr attribute pool (see XpSetAttributes) must be made
+prior to calling XpStartDoc, after which an XPBadSequence will be generated if
 changes are attempted, until XpEndDoc is called.
 
-The application is not required to call XpStartDoc and XpEndDoc in the process 
-of printing. The "document" delineation may not be useful from the application's 
-or spooler's perspective, hence is optional. If XpStartPage is called 
-immediately after XpStartJob then a synthetic XpStartDoc with XPDocNormal will 
-be assumed by the X Print Server prior to XpStartPage (i.e. the XPStartDocNotify 
-and XPStartPageNotify events will have the same sequence number). Likewise, if 
-XpEndJob is called immediately after XpEndPage then a synthetic XpEndDoc will be 
-assumed by the X Print Server prior to XpEndJob (i.e., the XPEndDocNotify and 
+The application is not required to call XpStartDoc and XpEndDoc in the process
+of printing. The "document" delineation may not be useful from the application's
+or spooler's perspective, hence is optional. If XpStartPage is called
+immediately after XpStartJob then a synthetic XpStartDoc with XPDocNormal will
+be assumed by the X Print Server prior to XpStartPage (i.e. the XPStartDocNotify
+and XPStartPageNotify events will have the same sequence number). Likewise, if
+XpEndJob is called immediately after XpEndPage then a synthetic XpEndDoc will be
+assumed by the X Print Server prior to XpEndJob (i.e., the XPEndDocNotify and
 XPEndJobNotify events will have the same sequence number).
 
-For clients selecting XPPrintMask (see XpSelectInput), the event XPPrintNotify 
+For clients selecting XPPrintMask (see XpSelectInput), the event XPPrintNotify
 will be generated with its detail field set to XPStartDocNotify.
 .SH STRUCTURES
 The XPDocumentType values are defined in <X11/extensions/Print.h>:
@@ -96,8 +96,8 @@ The XPDocumentType values are defined in <X11/extensions/Print.h>:
 
     #define   XPDocNormal     1     /\(** Doc data handled by Xserver*/
     #define   XPDocRaw        2     /\(** Doc data passed through Xserver*/
-    
-.fi 
+
+.fi
 
 .SH DIAGNOSTICS
 .TP 15
@@ -105,8 +105,8 @@ The XPDocumentType values are defined in <X11/extensions/Print.h>:
 A valid print context-id has not been set prior to making this call.
 .TP 15
 .SM XPBadSequence
-The function was not called in the proper order with respect to the other X 
-Print Service 
+The function was not called in the proper order with respect to the other X
+Print Service
 Extension calls (example, XpEndDoc prior to XpStartDoc).
 .TP 15
 .SM BadValue

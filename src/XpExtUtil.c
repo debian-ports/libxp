@@ -8,7 +8,7 @@
  ** (c) Copyright 1996 Digital Equipment Corp.
  ** (c) Copyright 1996 Fujitsu Limited
  ** (c) Copyright 1996 Hitachi, Ltd.
- ** 
+ **
  ** Permission is hereby granted, free of charge, to any person obtaining a copy
  ** of this software and associated documentation files (the "Software"), to deal
  ** in the Software without restriction, including without limitation the rights
@@ -50,12 +50,12 @@
 
 static XExtensionInfo     xp_info_data;
 static XExtensionInfo     *xp_info = &xp_info_data;
-static /* const */ char   *xp_extension_name = XP_PRINTNAME;
+static const char         *xp_extension_name = XP_PRINTNAME;
 
 static int    XpClose(Display *, XExtCodes *);
 static char   *XpError(Display *, int, XExtCodes *, char *, int);
 static Bool   XpWireToEvent(Display *, XEvent *, xEvent *);
-static Status XpEventToWire(Display *, XEvent *, xEvent **, int *);
+static Status XpEventToWire(Display *, XEvent *, xEvent *);
 
 #define XpCheckExtension(dpy,i,val) \
   XextCheckExtension (dpy, i, xp_extension_name, val)
@@ -85,13 +85,13 @@ typedef struct _xpPrintData {
     XPrintLocalExtensionVersion   *vers;
 } xpPrintData;
 
-static char *XpErrorList[ /* XP_ERRORS */ ] = {
+static const char *XpErrorList[ /* XP_ERRORS */ ] = {
 	"XPBadContext",
 	"XPBadSequence",
 	"XPBadResourceID"
 };
 
-XEXT_GENERATE_FIND_DISPLAY (xp_find_display, xp_info, 
+XEXT_GENERATE_FIND_DISPLAY (xp_find_display, xp_info,
 	xp_extension_name, &xpprint_extension_hooks, XP_EVENTS, NULL)
 
 static XEXT_GENERATE_ERROR_STRING (XpError, xp_extension_name,
@@ -167,18 +167,18 @@ int XpCheckExtInitUnlocked(Display *dpy, int version_index)
 	    return (-1);
 	}
     }
-    
+
     return (0);
 }
 
 int XpCheckExtInit(Display *dpy, int version_index)
 {
     int retval;
-    
+
     _XLockMutex(_Xglobal_lock);
-    
+
     retval = XpCheckExtInitUnlocked(dpy, version_index);
-    
+
     _XUnlockMutex(_Xglobal_lock);
 
     return retval;
@@ -282,8 +282,7 @@ static Status
 XpEventToWire(
     Display *dpy,      /* pointer to display structure */
     XEvent *re,        /* pointer to client event */
-    xEvent **event,    /* wire protocol event */
-    int *count)
+    xEvent *event)     /* wire protocol event */
 {
     XExtDisplayInfo *info = (XExtDisplayInfo *) xp_find_display (dpy);
 
@@ -339,6 +338,6 @@ XpEventToWire(
 #endif /* PRINT_SomeEventExample2 */
 
         default:
-            return(_XUnknownNativeEvent(dpy, re, *event));
+            return(_XUnknownNativeEvent(dpy, re, event));
         }
 }
