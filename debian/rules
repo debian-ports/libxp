@@ -37,6 +37,7 @@ confflags += --enable-fc
 build: patch build-stamp
 build-stamp:
 	dh_testdir
+	dh_autoreconf
 
 	mkdir -p build
 	cd build && \
@@ -51,6 +52,7 @@ build-stamp:
 clean: xsfclean
 	dh_testdir
 	dh_testroot
+	dh_autoreconf_clean
 	rm -f build-stamp
 
 	rm -f config.cache config.log config.status

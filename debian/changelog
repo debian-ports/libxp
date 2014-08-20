@@ -1,3 +1,10 @@
+libxp (1:1.0.2-2) UNRELEASED; urgency=medium
+
+  * Use dh-autoreconf to add support for new architectures (Closes: #751769).
+    Thanks, Breno Leitao!
+
+ -- Cyril Brulebois <kibi@debian.org>  Wed, 20 Aug 2014 15:44:53 +0200
+
 libxp (1:1.0.2-1) unstable; urgency=low
 
   * New upstream release.
